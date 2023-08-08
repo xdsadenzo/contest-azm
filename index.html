@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+  
+    <title>JSON</title>
+    <style>
+      
+        
+    </style>
+</head>
+<body>
+  
+    <section>
+        <div class="container">
+        <div class="row" id="kinza"></div>
+    </div>
+       </section>
+    <section>
+    <div class="container mt-5">
+        <h1 class="text-center mt-3">Mobiles</h1>
+    <div class="row r1">
+
+    </div>
+</div>
+<section id="led">
+    <div class="container mt-5">
+        <h1 class="text-center mt-3">Led</h1>
+        <div class="row r2">
+
+        </div>
+    </div>
+
+</section>
+  
+     <script>
+        let ab = $(".r1");
+        let cd = $(".r2");
+        let c = "";
+        let d = "";
+        $.ajax({
+            url : "index.json",
+            method : "get",
+            success :function(data){
+              $.each(data.students,function(abc,value){
+            //    console.log(value.name)
+              
+                
+          c += ( `<div class="col-md-2 mt-4">
+          <div class="card p-3">
+        <img class="img-top" src="`+value.image+`" alt="">
+            
+            <div class="card-body"><h2 class="card-title">`+value.age+`</h2><span class="card-text">`+value.Qualification+`<span></span>
+                <p>`+value.name+`</p>
+                </div>
+                <button class="btn btn-info" data-toggle="modal" data-target="#modelId`+value.id+`">detail</button>
+                <div class="modal fade" id="modelId`+value.id+`" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">`+value.name+`</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="img-top" src="`+value.image+`" alt="">
+                        </div>
+                        <div class="col-md-6">
+                           <p class="p-3">
+                           `+value.name+`
+                            </p>
+                          
+                            <p class="p-3">
+                           `+value.age+`
+                            </p>    
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" class="p_id" value="`+value.id+`">
+                    <input type="hidden" class="p_name" value="`+value.name+`">
+                    <input type="hidden" class="p_image" value="`+value.image+`">
+                    <input type="hidden" class="p_age" value="`+value.age+`">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button  class="btn btn-primary addto">add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>`
+    
+    
+              ) 
+    
+              })
+              ab.html(c);
+              let myJsonCartData = [];
+              $(".addto").click(function(){
+                let product_id =$(this).siblings('.p_id').val();
+          let product_name =$(this).siblings('.p_name').val();
+          let product_image =$(this).siblings('.p_image').val();
+          let product_age =$(this).siblings('.p_age').val();
+          
+          let data = localStorage.getItem('myFinalJsonCartDataLocal');
+          let MyProductsDataa = JSON.parse(data);
+    console.log(MyProductsDataa);
+
+      let matchedProductData =  MyProductsDataa.find(function(myproduct){
+             return  myproduct.id == product_id;
+          
+   });
+
+if(!matchedProductData){
+    console.log(product_id)
+    alert('product added successfully');
+;
+}
+else{
+ // console.log(product_name + " " + product_image + " " + product_age);
+//  myJsonCartData.push({'product_name':product_name,'product_image':product_image,'product_age':product_age});
+//                 let myFinalJsonCartData = localStorage.setItem('myFinalJsonCartDataLocal',JSON.stringify(myJsonCartData));
+                alert('product alreday successfully');
+                console.log(product_id)
+}
+
+
+
+
+           
+        })
+
+
+            //   led start
+
+              $.each(data.led,function(abc,value){
+            //    console.log(value.name)
+              
+                
+          d += ( `<div class="col-md-2 mt-4">
+          <div class="card">
+        <img class="img-top" src="`+value.image+`" alt="">
+            
+            <div class="card-body"><h2 class="card-title">`+value.age+`</h2><span class="card-text">`+value.Qualification+`<span></span></div>
+            </div>
+            </div>`
+        // 
+        
+              ) 
+
+              })
+              cd.html(d);
+            }
+
+
+
+        })
+
+
+   
+
+    </script> 
+ 
+    
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+
+    {"id":1,"name":"ali","age":22,"Qualification":"BS","image":"images/i1.webp"},
+    {"id":2,"name":"Rafay","age":23,"Qualification":"MS","image":"images/i2.webp"},
+    {"id":3,"name":"Sana","age":21,"Qualification":"MPHIL","image":"images/i3.webp"},
+    {"id":4,"name":"ali","age":24,"Qualification":"BSc","image":"images/i1.webp"},
+    {"id":5,"name":"aqsa","age":25,"Qualification":"MSc","image":"images/i2.webp"},
+    {"id":6,"name":"lubna","age":19,"Qualification":"PHD","image":"images/i3.webp"},
+    {"id":7,"name":"laraib","age":18,"Qualification":"BShonours","image":"images/i1.webp"},
+    {"id":8,"name":"huzaifa","age":17,"Qualification":"FSC","image":"images/i2.webp"},
+    {"id":9,"name":"mehmood","age":16,"Qualification":"FS","image":"images/i3.webp"},
+    {"id":10,"name":"zafir","age":15,"Qualification":"ICOM","image":"images/i1.webp"},
+    {"name":"led","age":22,"Qualification":"Bulb1","image":"images/n1.webp"},
+    {"name":"led2","age":23,"Qualification":"B2","image":"images/n2.webp"},
+    {"name":"led2","age":21,"Qualification":"B3","image":"images/n3.webp"},
+    {"name":"led4","age":24,"Qualification":"B4","image":"images/n4.webp"},
+    {"name":"led5","age":25,"Qualification":"B5","image":"images/s1.webp"},
+    {"name":"led6","age":19,"Qualification":"B6","image":"images/s2.webp"}
+
+]
