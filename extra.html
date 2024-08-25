@@ -1,0 +1,154 @@
+<!-- indoor section start -->
+<section id="indoorSection">
+    <div class="container mt-5">
+        <h1 class="text-center mt-3">Indoor</h1>
+        <div class="col-md-6">
+            <div class="form-group">
+          
+            <button id="sort-by-price" class="btn btn-primary">Sort by Price</button>
+
+            </div>
+        </div>
+    <div class="row r1">
+
+    </div>
+</div>
+     </section>
+
+   let ab = $(".r1");
+        let cd = $(".r2");
+        let ef = $(".r3");
+        let hi = $(".r4");
+        let c = "";
+        let d = "";
+        let g = "";
+        let j = "";
+        $.ajax({
+            url : "index.json",
+            method : "get",
+            success :function(data){
+              $.each(data.indoor,function(abc,value){
+            //    console.log(value.name)}}
+              
+                
+          c += ( `<div class="col-md-3 mt-4">
+          <div class="card p-3">
+        <img class="img-top" src="`+value.image+`" alt="">
+            
+            <div class="card-body"><h2 class="card-title">`+'$'+value.price+`</h2>
+                <p>`+value.name+`</p>
+                </div>
+                <button class="btn btn-info" data-toggle="modal" data-target="#modelId`+value.id+`">detail</button>
+                <div class="modal fade" id="modelId`+value.id+`" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog"  role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">`+value.name+`</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body" >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="img-top img-fluid"  src="`+value.image+`" alt="">
+                            <p class="p-3" id='indoorPrice'>
+                           `+'$'+value.price+`
+                            </p>    
+                        </div>
+                        <div class="col-md-6">   
+                <div class="card-description">
+                    <p class="col-md-12 text-align-justify ">`+value.Description+`</p>
+                </div>
+                   </div>       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" class="p_id" value="`+value.id+`">
+                    <input type="hidden" class="p_name" value="`+value.name+`">
+                    <input type="hidden" class="p_image" value="`+value.image+`">
+                    <input type="hidden" class="p_price" value="`+value.price+`">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button  class="btn btn-primary addto">add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>`
+    
+    
+              ) 
+    
+              })
+              ab.html(c);
+              //sorting by price
+  // Function to sort items by price
+function sortByPrice(items) {
+    // console.log(items);
+    return items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+  
+}
+// Event handler for the sort button start
+$("#sort-by-price").click(function() {
+    let sortedData = sortByPrice(data.indoor); // Assuming 'data' contains your fetched JSON data
+    let sortedHtml = ""; // String to store sorted HTML
+
+    // Generate HTML for sorted items
+    $.each(sortedData, function(abc, value) {
+        console.log(sortedData)
+        // Your existing code for generating HTML here...
+        // Just like you did for the 'success' function
+        sortedHtml += ( `<div class="col-md-3 mt-4">
+          <div class="card p-3">
+        <img class="img-top" src="`+value.image+`" alt="">
+            
+            <div class="card-body"><h2 class="card-title">`+'$'+value.price+`</h2>
+                <p>`+value.name+`</p>
+                </div>
+                <button class="btn btn-info" data-toggle="modal" data-target="#modelId`+value.id+`">detail</button>
+                <div class="modal fade" id="modelId`+value.id+`" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog"  role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">`+value.name+`</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body" >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="img-top img-fluid"  src="`+value.image+`" alt="">
+                            <p class="p-3" id='indoorPrice'>
+                          $`+value.price+`
+                            </p>    
+                        </div>
+                        <div class="col-md-6">   
+                <div class="card-description">
+                    <p class="col-md-12 text-align-justify ">`+value.Description+`</p>
+                </div>
+                   </div>       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" class="p_id" value="`+value.id+`">
+                    <input type="hidden" class="p_name" value="`+value.name+`">
+                    <input type="hidden" class="p_image" value="`+value.image+`">
+                    <input type="hidden" class="p_price" value="`+value.price+`">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button  class="btn btn-primary addto">add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>`
+    
+    
+              ) 
+    });
+
+    // Display sorted HTML
+    ab.html(sortedHtml);
+});
